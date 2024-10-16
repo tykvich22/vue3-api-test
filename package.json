@@ -1,0 +1,27 @@
+{
+	"name": "vue3-api-test",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"homepage": "https://tykvich22.github.io/vue3-api-test",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc -b && vite build",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@ant-design/icons-vue": "^7.0.1",
+		"ant-design-vue": "^4.2.5",
+		"pinia": "^2.2.4",
+		"vue": "^3.5.10"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^5.1.4",
+		"gh-pages": "^6.2.0",
+		"typescript": "^5.5.3",
+		"vite": "^5.4.8",
+		"vue-tsc": "^2.1.6"
+	}
+}
