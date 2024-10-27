@@ -62,8 +62,16 @@ export const useItemsStore = defineStore('items', () => {
 		saveCartToLocalStorage();
 	};
 
-	const isInCart = (id: string) => {
-		return cart.value.some((item) => item.id === id);
+	const updateItemCount = (id: string, count: number) => {
+		const item = findItemInCart(id);
+		if (item) {
+			item.count = count;
+			saveCartToLocalStorage();
+		}
+	};
+
+	const findItemInCart = (id: string) => {
+		return cart.value.find((item) => item.id === id) || null;
 	};
 
 	const totalItems = computed(() => {
@@ -78,12 +86,15 @@ export const useItemsStore = defineStore('items', () => {
 	});
 	return {
 		products,
+		cart,
 		isLoading,
 		error,
 		addToCart,
 		removeFromCart,
-		isInCart,
+		findItemInCart,
 		totalItems,
 		totalCost,
+
+		updateItemCount,
 	};
 });

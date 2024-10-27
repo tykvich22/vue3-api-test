@@ -1,46 +1,50 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import { Product } from '../store/items';
-import { useItemsStore } from '../store/items';
+import AddToCartButton from './AddToCartButton.vue';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps<{ product: Product }>();
-
-const store = useItemsStore();
-const { addToCart, removeFromCart, isInCart } = store;
 </script>
 
 <template>
 	<a-card hoverable class="productCardStyle">
 		<template #cover>
-			<img alt="product" :src="props.product.image" />
+			<RouterLink
+				:to="{
+					name: 'ProductDetail',
+					params: {
+						id: product.id,
+					},
+				}"
+				custom
+				v-slot="{ navigate }"
+			>
+				<img @click="navigate" alt="product" :src="props.product.image" />
+			</RouterLink>
 		</template>
-
-		<a-card-meta :title="props.product.title">
-			<template #description>Цена: {{ props.product.cost }} ₽</template>
-		</a-card-meta>
-		<a-button
-			class="buttonStyle"
-			:type="isInCart(props.product.id) ? 'default' : 'primary'"
-			@click="
-				isInCart(product.id)
-					? removeFromCart(product.id)
-					: addToCart(product.id)
-			"
-			>{{ isInCart(product.id) ? 'В корзине' : 'Добавить в корзину' }}</a-button
+		<RouterLink
+			:to="{
+				name: 'ProductDetail',
+				params: {
+					id: product.id,
+				},
+			}"
+			custom
+			v-slot="{ navigate }"
 		>
+			<a-card-meta :title="props.product.title" @click="navigate">
+				<template #description>Цена: {{ props.product.cost }} ₽</template>
+			</a-card-meta>
+		</RouterLink>
+		<AddToCartButton :size="120" :id="product.id" />
 	</a-card>
 </template>
 
 <style scoped>
 .productCardStyle {
 	img {
-		padding: 2px;
+		padding: 30px;
 	}
-}
-
-.buttonStyle {
-	margin-top: 8px;
-
-	width: 166px;
 }
 </style>

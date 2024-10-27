@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/api/api.ts","./src/store/items.ts","./src/app.vue","./src/components/carticon.vue","./src/components/icecreamloading.vue","./src/components/productcard.vue"],"version":"5.6.3"}

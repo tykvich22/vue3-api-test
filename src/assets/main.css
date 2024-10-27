@@ -5,3 +5,20 @@
 #app {
 	font-weight: normal;
 }
+
+button {
+	-webkit-appearance: none;
+	appearance: none;
+	display: inline-block;
+	border-radius: 8px;
+	background-color: transparent;
+	border: 1px solid #d9d9d9;
+	color: #515151;
+	transition: all 0.3s ease;
+}
+
+button:hover {
+	border: 1px solid #6599be;
+	color: #6599be;
+	cursor: pointer;
+}
